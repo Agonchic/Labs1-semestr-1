@@ -215,9 +215,7 @@ status q_key(const double a, const double b, const double c,
     return STATUS_OK;
 }
 
-static int triples_are_equal(const double a1, const double b1, const double c1,
-                             const double a2, const double b2, const double c2,
-                             const double eps) {
+static int triples_are_equal(const double a1, const double b1, const double c1, const double a2, const double b2, const double c2, const double eps) {
     double d1 = fabs(a1 - a2);
     double d2 = fabs(b1 - b2);
     double d3 = fabs(c1 - c2);
@@ -227,8 +225,7 @@ static int triples_are_equal(const double a1, const double b1, const double c1,
     return (d1 < eps) && (d2 < eps) && (d3 < eps);
 }
 
-status get_unique_permutations(const double src[3], const double eps,
-                                   double perms[6][3], int *const count) {
+status get_unique_permutations(const double src[3], const double eps, double perms[6][3], int *const count) {
     if (src == NULL || perms == NULL || count == NULL ||
         !isfinite(eps) || eps <= 0.0) {
         return STATUS_ERROR_INVALID_PARAMETER;
@@ -247,8 +244,7 @@ status get_unique_permutations(const double src[3], const double eps,
     for (int i = 0; i < 6; ++i) {
         int is_duplicate = 0;
         for (int j = 0; j < n; ++j) {
-            if (triples_are_equal(all[i][0], all[i][1], all[i][2],
-                                  perms[j][0], perms[j][1], perms[j][2], eps)) {
+            if (triples_are_equal(all[i][0], all[i][1], all[i][2], perms[j][0], perms[j][1], perms[j][2], eps)) {
                 is_duplicate = 1;
                 break;
             }
